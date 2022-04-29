@@ -1,5 +1,6 @@
 ﻿using com.w3cnet.WebApi.Common;
 using com.w3cnet.WebApi.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,7 @@ namespace com.w3cnet.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "System")]
         public string DefaultRoute([FromBody] UserModel user = null)
         {
             return "Default route.";

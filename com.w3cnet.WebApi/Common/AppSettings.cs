@@ -8,7 +8,7 @@ using System.Linq;
 namespace com.w3cnet.WebApi.Common
 {
     /// <summary>
-    /// AppSettings读取类
+    /// AppSettings模块
     /// </summary>
     public class AppSettings
     {

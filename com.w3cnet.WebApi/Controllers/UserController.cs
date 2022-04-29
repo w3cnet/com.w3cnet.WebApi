@@ -15,25 +15,18 @@ namespace com.w3cnet.WebApi.Controllers
         /// <summary>
         /// 登录(JWT示例)
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="role"></param>
         /// <returns></returns>
         [HttpPost]
-        public ReturnModel Login(UserModel user)
+        public ReturnModel Login(string role)
         {
             string jwtStr = string.Empty;
             bool suc = false;
 
-            if (user != null)
+            if (!string.IsNullOrEmpty(role))
             {
-                // 将用户id和角色名，作为单独的自定义变量封装进 token 字符串中。
-                var roles = new[] { 
-                    new {role_id = "1", role_name = "权限1", menu_path = "/test/t1"},
-                    new {role_id = "2", role_name = "权限2", menu_path = "/test/t2"},
-                    new {role_id = "3", role_name = "权限3", menu_path = "/test/t3"}
-                };
-
-                TokenModel tokenModel = new TokenModel { Uid = Guid.NewGuid().ToString(), Role = JsonConvert.SerializeObject(roles) };
-                jwtStr = JwtHelper.IssueJwt(tokenModel); // 登录，获取到一定规则的 Token 令牌
+                TokenModel tokenModel = new TokenModel { Uid = Guid.NewGuid().ToString(), Roles = role };
+                jwtStr = JwtModule.IssueJwt(tokenModel); // 登录，获取到一定规则的 Token 令牌
                 suc = true;
             }
             else

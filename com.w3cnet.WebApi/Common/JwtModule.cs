@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 namespace com.w3cnet.WebApi.Common
 {
     /// <summary>
-    /// JWT帮助类
+    /// JWT模块
     /// </summary>
-    public static class JwtHelper
+    public static class JwtModule
     {
         //获取Appsetting配置
         private static string issuer = AppSettings.Get(new string[] { "JwtSetting", "Issuer" });
@@ -47,7 +47,7 @@ namespace com.w3cnet.WebApi.Common
             };
 
             // 可以将一个用户的多个角色全部赋予；
-            claims.AddRange(tokenModel.Role.Split(',').Select(s => new Claim(ClaimTypes.Role, s)));
+            claims.AddRange(tokenModel.Roles.Split(',').Select(s => new Claim(ClaimTypes.Role, s)));
 
             //秘钥(SymmetricSecurityKey对安全性的要求，密钥的长度太短会报出异常)
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
@@ -84,18 +84,18 @@ namespace com.w3cnet.WebApi.Common
             var token = new TokenModel
             {
                 Uid = jwtToken.Id.ToString(),
-                Role = role != null ? role.ToString() : "",
+                Roles = role != null ? role.ToString() : "",
             };
 
             return token;
         }
 
         /// <summary>
-        /// 添加JWT模块
+        /// 注册模块
         /// </summary>
         /// <param name="services"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public static void AddJWT(this IServiceCollection services)
+        public static void AddAuthorizationSetup(this IServiceCollection services)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
@@ -117,26 +117,20 @@ namespace com.w3cnet.WebApi.Common
                 RequireExpirationTime = true,
             };
 
-            //2.1【认证】、core自带官方JWT认证
-            // 开启Bearer认证
-            services.AddAuthentication("Bearer")
-             // 添加JwtBearer服务
-             .AddJwtBearer(o =>
-             {
-                 o.TokenValidationParameters = tokenValidationParameters;
-                 o.Events = new JwtBearerEvents
-                 {
-                     OnAuthenticationFailed = context =>
-                     {
-                         // 如果过期，则把<是否过期>添加到，返回头信息中
-                         if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                         {
-                             context.Response.Headers.Add("Token-Expired", "true");
-                         }
-                         return Task.CompletedTask;
-                     }
-                 };
-             });
+            // JWT认证
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = tokenValidationParameters;
+                    options.Events = new JwtBearerEvents {
+                        OnAuthenticationFailed = context => {
+                            // 如果过期，则把<是否过期>添加到，返回头信息中
+                            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException)) {
+                                context.Response.Headers.Add("Token-Expired", "true");
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
         }
 
     }

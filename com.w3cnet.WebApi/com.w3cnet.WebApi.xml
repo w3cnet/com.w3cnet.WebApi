@@ -29,31 +29,47 @@
             <param name="sections"></param>
             <returns></returns>
         </member>
-        <member name="T:com.w3cnet.WebApi.Common.JwtHelper">
+        <member name="T:com.w3cnet.WebApi.Common.JwtModule">
             <summary>
-            JWT帮助类
+            JWT模块
             </summary>
         </member>
-        <member name="M:com.w3cnet.WebApi.Common.JwtHelper.IssueJwt(com.w3cnet.WebApi.Model.TokenModel)">
+        <member name="M:com.w3cnet.WebApi.Common.JwtModule.IssueJwt(com.w3cnet.WebApi.Model.TokenModel)">
             <summary>
             颁发JWT字符串
             </summary>
             <param name="tokenModel"></param>
             <returns></returns>
         </member>
-        <member name="M:com.w3cnet.WebApi.Common.JwtHelper.SerializeJwt(System.String)">
+        <member name="M:com.w3cnet.WebApi.Common.JwtModule.SerializeJwt(System.String)">
             <summary>
             解析
             </summary>
             <param name="jwtStr"></param>
             <returns></returns>
         </member>
-        <member name="M:com.w3cnet.WebApi.Common.JwtHelper.AddJWT(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:com.w3cnet.WebApi.Common.JwtModule.AddAuthorizationSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            添加JWT模块
+            注册模块
             </summary>
             <param name="services"></param>
             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Common.SwaggerModule">
+            <summary>
+            Swagger模块
+            </summary>
+        </member>
+        <member name="F:com.w3cnet.WebApi.Common.SwaggerModule.ApiName">
+            <summary>
+            API接口名称
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Common.SwaggerModule.AddSwaggerSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注册方法
+            </summary>
+            <param name="services"></param>
         </member>
         <member name="T:com.w3cnet.WebApi.Controllers.BaseController">
             <summary>
@@ -82,12 +98,41 @@
             用户控制器(示例)
             </summary>
         </member>
-        <member name="M:com.w3cnet.WebApi.Controllers.UserController.Login(com.w3cnet.WebApi.Model.UserModel)">
+        <member name="M:com.w3cnet.WebApi.Controllers.UserController.Login(System.String)">
             <summary>
             登录(JWT示例)
             </summary>
-            <param name="user"></param>
+            <param name="role"></param>
             <returns></returns>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Startup">
+            <summary>
+            启动类
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Startup.Configuration">
+            <summary>
+            配置集合
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Services方法
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            配置方法
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

@@ -44,7 +44,7 @@
             Id
             </summary>
         </member>
-        <member name="P:com.w3cnet.WebApi.Model.TokenModel.Role">
+        <member name="P:com.w3cnet.WebApi.Model.TokenModel.Roles">
             <summary>
             角色
             </summary>

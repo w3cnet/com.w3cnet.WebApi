@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,45 +16,43 @@ using System.Threading.Tasks;
 
 namespace com.w3cnet.WebApi
 {
+    /// <summary>
+    /// 启动类
+    /// </summary>
     public class Startup
     {
-        const string ApiName = "WebApi脚手架";
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            //var builder = new ConfigurationBuilder()
-            //   .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            //Configuration = builder.Build();
         }
 
+        /// <summary>
+        /// 配置集合
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Services方法
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerSetup();
+
+            services.AddAuthorizationSetup();
+
             services.AddControllers();
-
-            // swagger
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("V1", new OpenApiInfo()
-                {
-                    Title = $"{ApiName}接口文档",
-                    Version = "v1",
-                    Description = $"{ApiName} HTTP API v1"
-                });
-
-                options.OrderActionsBy(o => o.RelativePath);
-                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "com.w3cnet.WebApi.xml"), true);
-                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "com.w3cnet.WebApi.Model.xml"), false);
-            });
-
-            services.AddJWT();           
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 配置方法
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -65,11 +64,13 @@ namespace com.w3cnet.WebApi
                 app.UseSwaggerUI(options =>
                 {
                     //设置Swagger文档路径
-                    options.SwaggerEndpoint("/swagger/V1/swagger.json", $"{ApiName}接口文档");
+                    options.SwaggerEndpoint("/swagger/V1/swagger.json", $"{SwaggerModule.ApiName}接口文档");
                 });
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

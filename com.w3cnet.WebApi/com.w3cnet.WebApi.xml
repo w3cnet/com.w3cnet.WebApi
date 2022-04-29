@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>com.w3cnet.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:com.w3cnet.WebApi.Common.AppSettings">
+            <summary>
+            AppSettings读取类
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Common.AppSettings.Configuration">
+            <summary>
+            AppSetting配置集合
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Common.AppSettings.Get(System.String[])">
+            <summary>
+            获取节点配置
+            </summary>
+            <param name="sections">节点配置</param>
+            <returns></returns>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Common.AppSettings.List``1(System.String[])">
+            <summary>
+            获取子节点列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="sections"></param>
+            <returns></returns>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Common.JwtHelper">
+            <summary>
+            JWT帮助类
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Common.JwtHelper.IssueJwt(com.w3cnet.WebApi.Model.TokenModel)">
+            <summary>
+            颁发JWT字符串
+            </summary>
+            <param name="tokenModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Common.JwtHelper.SerializeJwt(System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="jwtStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Common.JwtHelper.AddJWT(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加JWT模块
+            </summary>
+            <param name="services"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Controllers.BaseController">
+            <summary>
+            控制器基类
+            </summary>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Controllers.HomeController">
+            <summary>
+            控制器示例(示例)
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Controllers.HomeController.Index">
+            <summary>
+            自定义路由
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Controllers.HomeController.DefaultRoute(com.w3cnet.WebApi.Model.UserModel)">
+            <summary>
+            默认路由:home/defaultroute
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Controllers.UserController">
+            <summary>
+            用户控制器(示例)
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Controllers.UserController.Login(com.w3cnet.WebApi.Model.UserModel)">
+            <summary>
+            登录(JWT示例)
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

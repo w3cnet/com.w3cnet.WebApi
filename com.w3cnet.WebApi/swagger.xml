@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>com.w3cnet.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:com.w3cnet.WebApi.Controllers.HomeController">
+            <summary>
+            控制器示例(示例)
+            </summary>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Controllers.HomeController.Index">
+            <summary>
+            自定义路由
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.w3cnet.WebApi.Controllers.HomeController.DefaultRoute(com.w3cnet.WebApi.Model.User)">
+            <summary>
+            默认路由:home/defaultroute
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

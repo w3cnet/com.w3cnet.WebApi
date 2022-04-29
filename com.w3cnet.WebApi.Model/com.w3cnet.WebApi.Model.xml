@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>com.w3cnet.WebApi.Model</name>
+    </assembly>
+    <members>
+        <member name="T:com.w3cnet.WebApi.Model.Common.ReturnModel">
+            <summary>
+            统一出参Model
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.Common.ReturnModel.Code">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.Common.ReturnModel.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.Common.ReturnModel.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.Common.ReturnModel.Data">
+            <summary>
+            返回的数据
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.Common.ReturnModel.ResponseTime">
+            <summary>
+            响应时间
+            </summary>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Model.TokenModel">
+            <summary>
+            JWT令牌
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.TokenModel.Uid">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.TokenModel.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:com.w3cnet.WebApi.Model.UserModel">
+            <summary>
+            用户Model(示例)
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.UserModel.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.UserModel.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+    </members>
+</doc>

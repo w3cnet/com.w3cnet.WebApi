@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>com.w3cnet.WebApi.Model</name>
+    </assembly>
+    <members>
+        <member name="T:com.w3cnet.WebApi.Model.User">
+            <summary>
+            用户Model(示例)
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.User.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:com.w3cnet.WebApi.Model.User.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+    </members>
+</doc>
